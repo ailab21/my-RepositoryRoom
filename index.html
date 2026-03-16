@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>マイ・ポートフォリオ</title>
+
+    <script>
+        // パスワードの設定（「1234」の部分を好きな言葉に変えてください）
+        const password = "0101"; 
+        
+        // 画面が開いたときに入力欄を出す
+        let input = prompt("4桁の数字パスワードを入力してください");
+
+        // 正解しなかった場合
+        if (input !== password) {
+            alert("パスワードが違います。どれかの作品に隠されてるよ!");
+            // 別のサイト（例：Google）に飛ばす、または画面を白くする
+            location.href = "https://www.pixiv.net/dashboard/works";
+        }
+    </script>
+<head>
+    <meta charset="UTF-8">
+    <title>マイ・ポートフォリオ</title>
+    
+    <style>
+        /* ここにCSS（デザインの指示）を書きます */
+        body {
+    /* 画像を背景に指定する */
+    background-image: url("background.png");
+
+    /* 画像を画面いっぱいに広げる設定（これが重要！） */
+    background-size: cover;
+
+    /* スクロールしても背景画像が動かないようにする（おしゃれに見えます） */
+    background-attachment: fixed;
+
+    /* 画像の中央を基準にする */
+    background-position: center;
+
+    /* 画像が足りない時に繰り返さない */
+    background-repeat: no-repeat;
+
+    /* 文字が画像に重なって見えにくい場合、全体の文字色を調整 */
+    color: #ffffff; 
+}
+        header {
+            background-color: #ffffff; /* ヘッダーだけ白にする */
+            padding: 50px 20px;
+            border-bottom: 3px solid #7FFF00; /* 下に青い線を引く */
+        }
+
+        h1 {
+            color: #7FFF00; /* 見出しの色を青にする */
+            margin: 0;
+        }
+
+        section {
+            max-width: 600px;
+            margin: 20px auto; /* セクションを中央に配置 */
+            padding: 20px;
+            background: white;
+            border-radius: 8px; /* 角を少し丸くする */
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* 軽い影をつける */
+        }
+    </style>
+</head>
+
+</head>
+<head>
+    <meta charset="UTF-8">
+    <title>マイ・ギャラリー</title>
+    <style>
+        body { text-align: center; font-family: sans-serif; background-color: #f0f0f0; }
+        img { border: 10px solid white; box-shadow: 0 4px 8px rgba(0,0,0,0.2); max-width: 90%; }
+    </style>
+</head>
+<body>
+    <h1>ようこそ隠し部屋へ</h1>
+    <img src="20260316001.png" alt="作品1"class="original-size">
+    <img src="20260316002.png" alt="作品2"class="original-size">
+    <img src="20260316003.png" alt="作品2"class="original-size">
+</body>
+</html>
