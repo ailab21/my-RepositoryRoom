@@ -2,82 +2,159 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <title>マイ・ポートフォリオ</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secret Gallery</title>
 
     <script>
-        // パスワードの設定（「1234」の部分を好きな言葉に変えてください）
+        // パスワードの設定
         const password = "0101"; 
-        
-        // 画面が開いたときに入力欄を出す
-        let input = prompt("4桁の数字を入力してください");
+        let input = prompt("4桁の数字パスワードを入力してください");
 
-        // 正解しなかった場合
         if (input !== password) {
-            alert("パスワードが違います。どれかのwallpaper作品に隠されてるよ!");
-            // 別のサイト（例：Google）に飛ばす、または画面を白くする
+            alert("パスワードが違います。どれかの作品に隠されてるよ!");
             location.href = "https://www.pixiv.net/dashboard/works";
         }
     </script>
-<head>
-    <meta charset="UTF-8">
-    <title>マイ・ポートフォリオ</title>
-    
+
     <style>
-        /* ここにCSS（デザインの指示）を書きます */
+        /* --- 全体のデザイン --- */
         body {
-    /* 画像を背景に指定する */
-    background-image: url("background.png");
-
-    /* 画像を画面いっぱいに広げる設定（これが重要！） */
-    background-size: cover;
-
-    /* スクロールしても背景画像が動かないようにする（おしゃれに見えます） */
-    background-attachment: fixed;
-
-    /* 画像の中央を基準にする */
-    background-position: center;
-
-    /* 画像が足りない時に繰り返さない */
-    background-repeat: no-repeat;
-
-    /* 文字が画像に重なって見えにくい場合、全体の文字色を調整 */
-    color: #ffffff; 
-}
-        header {
-            background-color: #ffffff; /* ヘッダーだけ白にする */
-            padding: 50px 20px;
-            border-bottom: 3px solid #7FFF00; /* 下に青い線を引く */
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            font-family: sans-serif;
+            /* 背景画像の設定 */
+            background-image: url("background.png");
+            background-size: cover;
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-color: #333; /* 画像がない時の予備色 */
+            color: #ffffff;
         }
 
         h1 {
-            color: #7FFF00; /* 見出しの色を青にする */
-            margin: 0;
+            background-color: rgba(255, 255, 255, 0.8); /* 文字を読みやすく白背景を少し入れる */
+            color: #7FFF00;
+            padding: 30px;
+            margin-bottom: 30px;
+            border-bottom: 3px solid #7FFF00;
         }
 
-        section {
-            max-width: 600px;
-            margin: 20px auto; /* セクションを中央に配置 */
+        /* --- ギャラリー（一覧）の設定 --- */
+        .gallery {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: flex-start;
+            gap: 15px;
             padding: 20px;
-            background: white;
-            border-radius: 8px; /* 角を少し丸くする */
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* 軽い影をつける */
         }
-    </style>
-</head>
 
-</head>
-<head>
-    <meta charset="UTF-8">
-    <title>マイ・ギャラリー</title>
-    <style>
-        body { text-align: center; font-family: sans-serif; background-color: #f0f0f0; }
-        img { border: 10px solid white; box-shadow: 0 4px 8px rgba(0,0,0,0.2); max-width: 90%; }
+        .expandable {
+            width: 200px;
+            height: 200px;
+            object-fit: cover; /* 一覧では正方形に切り抜き */
+            cursor: pointer;
+            border: 5px solid white;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+            transition: transform 0.2s;
+        }
+
+        .expandable:hover {
+            transform: scale(1.05); /* ホバー時に少し大きく */
+        }
+
+        /* --- 拡大モーダルの設定（ここが重要！） --- */
+        .modal {
+            display: none; /* 最初は隠す */
+            position: fixed;
+            z-index: 999;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background-color: rgba(0,0,0,0.9); /* 背景をしっかり暗く */
+            
+            /* 中身を上下左右中央に配置 */
+            display: none; 
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* モーダル内の中身（画像・動画） */
+        .modal-content {
+            /* 画面内に必ず収める設定 */
+            max-width: 90vw;  /* 画面幅の90%まで */
+            max-height: 90vh; /* 画面高さの90%まで */
+            width: auto;
+            height: auto;
+            object-fit: contain; /* 比率を維持して全体表示 */
+            box-shadow: 0 0 30px rgba(0,0,0,0.5);
+        }
+
+        .close {
+            position: absolute;
+            top: 20px; right: 35px;
+            color: white; font-size: 50px; font-weight: bold;
+            cursor: pointer;
+            z-index: 1000;
+        }
+
+        /* JSで表示する時に使うクラス */
+        .show { display: flex !important; }
     </style>
 </head>
 <body>
-    <h1>ようこそ隠し部屋へ</h1>
-    <img src="20260316001.png" alt="作品1"class="original-size">
-    <img src="20260316002.png" alt="作品2"class="original-size">
-    <img src="20260316003.png" alt="作品2"class="original-size">
+
+<h1>Secret Gallery</h1>
+
+<div class="gallery">
+    <img src="20260316001.png" alt="作品1" class="expandable">
+    <img src="20260316002.png" alt="作品2" class="expandable">
+    <img src="20260316003.png" alt="作品3" class="expandable">
+    <img src="20260316004.png" alt="作品4" class="expandable">
+    <img src="20260316005.png" alt="作品5" class="expandable">
+    <img src="20260316006.png" alt="作品6" class="expandable">
+    <img src="20260316007.png" alt="作品7" class="expandable">
+    <img src="20260316008.png" alt="作品8" class="expandable">
+    <img src="20260316009.png" alt="作品9" class="expandable">
+    <img src="20260316010.png" alt="作品10" class="expandable">
+    <img src="20260316011.png" alt="作品11" class="expandable">
+    <img src="20260316012.png" alt="作品12" class="expandable">
+    <img src="20260316013.png" alt="作品13" class="expandable">
+    <img src="20260316014.png" alt="作品14" class="expandable">
+    <video src="20260316001move.mp4" class="expandable" muted autoplay loop></video>
+    <video src="20260316002move.mp4" class="expandable" muted autoplay loop></video>
+    <video src="20260316003move.mp4" class="expandable" muted autoplay loop></video>
+</div>
+
+<div id="modal" class="modal">
+    <span class="close">&times;</span>
+    <div id="modal-content-wrapper"></div>
+</div>
+
+<script>
+    const modal = document.getElementById("modal");
+    const wrapper = document.getElementById("modal-content-wrapper");
+
+    // 全ての画像・動画にクリックイベントを設定
+    document.querySelectorAll(".expandable").forEach(el => {
+        el.onclick = function() {
+            modal.classList.add("show"); // モーダルを表示
+            wrapper.innerHTML = ""; 
+
+            if (this.tagName === "IMG") {
+                wrapper.innerHTML = `<img src="${this.src}" class="modal-content">`;
+            } else {
+                wrapper.innerHTML = `<video src="${this.src}" class="modal-content" controls autoplay></video>`;
+            }
+        }
+    });
+
+    // 閉じる処理
+    modal.onclick = function() {
+        modal.classList.remove("show");
+        wrapper.innerHTML = ""; // 動画が鳴り続けないように空にする
+    }
+</script>
+
 </body>
 </html>
