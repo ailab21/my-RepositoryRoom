@@ -69,7 +69,7 @@
             transition: transform 0.2s;
             box-sizing: border-box;
             border-radius: 4px;
-            background-color: #000; /* 動画読み込み前の背景 */
+            background-color: #000; 
         }
 
         .expandable:hover { transform: scale(1.02); }
@@ -128,10 +128,10 @@
     <img src="thumb_20260316013.jpg" data-full="20260316013.png" alt="作品13" class="expandable" loading="lazy">
     <img src="thumb_20260316014.jpg" data-full="20260316014.png" alt="作品14" class="expandable" loading="lazy">
     
-    <!-- 動画セクション（autoplayとloopを削除しました） -->
-    <video src="20260316001move.mp4" class="expandable" muted loading="lazy" preload="metadata"></video>
-    <video src="20260316002move.mp4" class="expandable" muted loading="lazy" preload="metadata"></video>
-    <video src="20260316003move.mp4" class="expandable" muted loading="lazy" preload="metadata"></video>
+    <!-- 動画セクション（末尾に #t=0.1 を追加） -->
+    <video src="20260316001move.mp4#t=0.1" class="expandable" muted loading="lazy" preload="metadata"></video>
+    <video src="20260316002move.mp4#t=0.1" class="expandable" muted loading="lazy" preload="metadata"></video>
+    <video src="20260316003move.mp4#t=0.1" class="expandable" muted loading="lazy" preload="metadata"></video>
 </div>
 
 <div id="modal" class="modal">
@@ -152,8 +152,9 @@
                 const fullImage = this.getAttribute("data-full") || this.src;
                 wrapper.innerHTML = `<img src="${fullImage}" class="modal-content">`;
             } else {
-                // 拡大時のみ autoplay, loop, playsinline を適用して再生
-                wrapper.innerHTML = `<video src="${this.src}" class="modal-content" controls autoplay loop playsinline></video>`;
+                // 再生時は #t=0.1 を除いた元のパスで再生されるように調整
+                const videoSrc = this.src.split('#')[0];
+                wrapper.innerHTML = `<video src="${videoSrc}" class="modal-content" controls autoplay loop playsinline></video>`;
             }
         }
     });
