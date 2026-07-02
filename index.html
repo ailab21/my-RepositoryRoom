@@ -7,14 +7,12 @@
 
     <script>
         const password = "2037";
-        let input = prompt("PASSWORD REQUIRED");
-        let userID = "";
-        if (input !== password) {
-            alert("パスワードが違います wallpaper作品から数字4桁を探してください");
-            location.href = "https://www.pixiv.net/dashboard/works";
-        } else {
-            userID = prompt("ENTER UNIT ID", "Guest_Unit") || "Unknown_Unit";
-        }
+let input = prompt("PASSWORD REQUIRED");
+let userID = "GUEST_UNIT"; // ← 固定値にする
+if (input !== password) {
+    alert("パスワードが違います ai_labにDMしてください。");
+    location.href = "https://www.pixiv.net/users/127383623";
+}
     </script>
 
     <style>
@@ -199,7 +197,25 @@
         const bootScreen = document.getElementById("boot-screen");
         const logContainer = document.getElementById("boot-log-container");
         bootScreen.style.display = "flex";
-        const logs = ["PORTAL_BOOT...", `ID: ${userID.toUpperCase()}`, "SYNCING...", "READY."];
+        const logs = [
+    "SYSTEM_BOOT INITIATED...",
+    "CPU: [████████] 100% ONLINE",
+    "MEMORY: 8192MB ... OK",
+    "DISPLAY_UNIT: ACTIVE",
+    "----------------------------------------",
+    "AUTHENTICATING...",
+    "DECRYPTING ACCESS LEVEL...",
+    "ACCESS GRANTED",
+    `UNIT_ID: ${userID.toUpperCase()}`,
+    "----------------------------------------",
+    "AI_LAB PROTOCOL: ENGAGED",
+    "ANDROID_OS v4I.21 LOADED",
+    "...GLORY TO MANKIND.",
+    "----------------------------------------",
+    "LOADING GALLERY DATA...",
+    "SYNC COMPLETE.",
+    ">>> READY."
+];
         let i = 0;
         const interval = setInterval(() => {
             if (i < logs.length) {
