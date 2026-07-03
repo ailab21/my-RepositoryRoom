@@ -7,12 +7,12 @@
 
     <script>
         const password = "2037";
-let input = prompt("PASSWORD REQUIRED");
-let userID = "GUEST_UNIT"; // ← 固定値にする
-if (input !== password) {
-    alert("パスワードが違います ai_labにDMしてください。");
-    location.href = "https://www.pixiv.net/users/127383623";
-}
+        let input = prompt("PASSWORD REQUIRED");
+        let userID = "GUEST_UNIT";
+        if (input !== password) {
+            alert("パスワードが違います ai_labまでDMで聞いてください。");
+            location.href = "https://www.pixiv.net/users/127383623";
+        }
     </script>
 
     <style>
@@ -37,20 +37,20 @@ if (input !== password) {
         /* --- ニキシー管時計（右上固定） --- */
         #nixie-clock {
             position: fixed;
-            top: 12px; /* タイトルの高さに合わせて調整 */
+            top: 12px;
             right: 15px;
             display: flex;
             gap: 4px;
-            z-index: 10000; /* 最前面 */
+            z-index: 10000;
             background: rgba(0, 0, 0, 0.5);
             padding: 5px 10px;
             border: 1px solid rgba(186, 181, 161, 0.3);
             border-radius: 2px;
-            pointer-events: none; /* 下の要素を触れるように */
+            pointer-events: none;
         }
 
         .nixie-digit {
-            font-size: 1.2rem; /* 少しコンパクトに */
+            font-size: 1.2rem;
             font-weight: bold;
             color: var(--nixie-orange);
             text-shadow: 0 0 5px #ff5500, 0 0 10px var(--nixie-orange);
@@ -84,6 +84,39 @@ if (input !== password) {
 
         /* --- メインUI --- */
         h1 { background: var(--nier-beige); color: var(--nier-dark); padding: 15px; margin: 0; font-size: 1rem; text-align: left; padding-left: 20px; cursor: pointer; user-select: none; border-bottom: 4px solid var(--nier-accent); position: sticky; top: 0; z-index: 500; }
+
+        /* --- タブ --- */
+        #tab-bar {
+            display: flex;
+            background: var(--nier-dark);
+            border-bottom: 2px solid var(--nier-accent);
+            position: sticky;
+            top: 46px;
+            z-index: 400;
+        }
+
+        .tab-btn {
+            flex: 1;
+            padding: 10px;
+            background: transparent;
+            border: none;
+            border-right: 1px solid var(--nier-accent);
+            color: var(--nier-accent);
+            font-family: 'Courier New', monospace;
+            font-size: 0.85rem;
+            letter-spacing: 0.1em;
+            cursor: pointer;
+            transition: background 0.2s, color 0.2s;
+        }
+
+        .tab-btn:last-child { border-right: none; }
+
+        .tab-btn.active {
+            background: var(--nier-beige);
+            color: var(--nier-dark);
+            font-weight: bold;
+        }
+
         .gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 12px; padding: 20px; }
         .expandable { width: 100%; aspect-ratio: 1/1; object-fit: cover; border: 1px solid rgba(186, 181, 161, 0.4); filter: sepia(0.3) brightness(0.8); cursor: pointer; transition: transform 0.2s; }
 
@@ -112,60 +145,66 @@ if (input !== password) {
 
 <div id="content-wrapper">
     <h1 id="galleryTitle">Secret Gallery</h1>
+
+    <div id="tab-bar">
+        <button class="tab-btn active" onclick="switchTab('image')">[ IMG_FILES ]</button>
+        <button class="tab-btn" onclick="switchTab('video')">[ VIDEO_FILES ]</button>
+    </div>
+
     <div class="gallery" id="galleryContainer">
-         <img src="thumb_20260316001.jpg" data-full="20260316001.png" alt="作品1" class="expandable" loading="lazy">
-    <img src="thumb_20260316002.jpg" data-full="20260316002.png" alt="作品2" class="expandable" loading="lazy">
-    <img src="thumb_20260316003.jpg" data-full="20260316003.png" alt="作品3" class="expandable" loading="lazy">
-    <img src="thumb_20260316004.jpg" data-full="20260316004.png" alt="作品4" class="expandable" loading="lazy">
-    <img src="thumb_20260316005.jpg" data-full="20260316005.png" alt="作品5" class="expandable" loading="lazy">
-    <img src="thumb_20260316006.jpg" data-full="20260316006.png" alt="作品6" class="expandable" loading="lazy">
-    <img src="thumb_20260316007.jpg" data-full="20260316007.png" alt="作品7" class="expandable" loading="lazy">
-    <img src="thumb_20260316008.jpg" data-full="20260316008.png" alt="作品8" class="expandable" loading="lazy">
-    <img src="thumb_20260316009.jpg" data-full="20260316009.png" alt="作品9" class="expandable" loading="lazy">
-    <img src="thumb_20260316010.jpg" data-full="20260316010.png" alt="作品10" class="expandable" loading="lazy">
-    <img src="thumb_20260316011.jpg" data-full="20260316011.png" alt="作品11" class="expandable" loading="lazy">
-    <img src="thumb_20260316012.jpg" data-full="20260316012.png" alt="作品12" class="expandable" loading="lazy">
-    <img src="thumb_20260316013.jpg" data-full="20260316013.png" alt="作品13" class="expandable" loading="lazy">
-    <img src="thumb_20260316014.jpg" data-full="20260316014.png" alt="作品14" class="expandable" loading="lazy">
-    <img src="thumb_20260316015.jpg" data-full="20260316015.png" alt="作品15" class="expandable" loading="lazy">
-    <img src="thumb_20260316016.jpg" data-full="20260316016.png" alt="作品16" class="expandable" loading="lazy">
-    <img src="thumb_20260316017.jpg" data-full="20260316017.png" alt="作品17" class="expandable" loading="lazy">
-    <img src="thumb_20260316018.jpg" data-full="20260316018.png" alt="作品18" class="expandable" loading="lazy">
-    <img src="thumb_20260316019.jpg" data-full="20260316019.png" alt="作品19" class="expandable" loading="lazy">
-    <img src="thumb_20260316020.jpg" data-full="20260316020.png" alt="作品20" class="expandable" loading="lazy">
-    <img src="thumb_20260316021.jpg" data-full="20260316021.png" alt="作品21" class="expandable" loading="lazy">
-    <img src="thumb_20260316022.jpg" data-full="20260316022.png" alt="作品22" class="expandable" loading="lazy">
-    <img src="thumb_20260316023.jpg" data-full="20260316023.png" alt="作品23" class="expandable" loading="lazy">
-    <img src="thumb_20260316024.jpg" data-full="20260316024.png" alt="作品24" class="expandable" loading="lazy">
-    <img src="thumb_20260316025.jpg" data-full="20260316025.png" alt="作品25" class="expandable" loading="lazy">
-    <img src="thumb_20260316026.jpg" data-full="20260316026.png" alt="作品26" class="expandable" loading="lazy">
-    <img src="thumb_20260316027.jpg" data-full="20260316027.png" alt="作品27" class="expandable" loading="lazy">
-    <img src="thumb_20260316028.jpg" data-full="20260316028.png" alt="作品28" class="expandable" loading="lazy">
-    <img src="thumb_20260316029.jpg" data-full="20260316029.png" alt="作品29" class="expandable" loading="lazy">
-    <img src="thumb_20260316030.jpg" data-full="20260316030.png" alt="作品30" class="expandable" loading="lazy">
-    <img src="thumb_20260316031.jpg" data-full="20260316031.png" alt="作品31" class="expandable" loading="lazy">
-    <img src="thumb_20260316032.jpg" data-full="20260316032.png" alt="作品32" class="expandable" loading="lazy">
-    <img src="thumb_20260316033.jpg" data-full="20260316033.png" alt="作品33" class="expandable" loading="lazy">
-    <img src="thumb_20260316034.jpg" data-full="20260316034.png" alt="作品34" class="expandable" loading="lazy">
-    <img src="thumb_20260316035.jpg" data-full="20260316035.png" alt="作品35" class="expandable" loading="lazy">
-    <img src="thumb_20260316036.jpg" data-full="20260316036.png" alt="作品36" class="expandable" loading="lazy">
-    <img src="thumb_20260316037.jpg" data-full="20260316037.png" alt="作品37" class="expandable" loading="lazy">
-    <img src="thumb_20260316038.jpg" data-full="20260316038.png" alt="作品38" class="expandable" loading="lazy">
-    <!-- 動画セクション -->
-    <video src="20260316001move.mp4#t=0.1" class="expandable" muted loading="lazy" preload="metadata"></video>
-    <video src="20260316002move.mp4#t=0.1" class="expandable" muted loading="lazy" preload="metadata"></video>
-    <video src="20260316003move.mp4#t=0.1" class="expandable" muted loading="lazy" preload="metadata"></video>
-    <video src="20260316004move.mp4#t=0.1" class="expandable" muted loading="lazy" preload="metadata"></video>
-    <video src="20260316005move.mp4#t=0.1" class="expandable" muted loading="lazy" preload="metadata"></video>
-    <video src="20260316006move.mp4#t=0.1" class="expandable" muted loading="lazy" preload="metadata"></video>
-    <video src="20260316007move.mp4#t=0.1" class="expandable" muted loading="lazy" preload="metadata"></video>
-    <video src="20260316008move.mp4#t=0.1" class="expandable" muted loading="lazy" preload="metadata"></video>
-    <video src="20260316009move.mp4#t=0.1" class="expandable" muted loading="lazy" preload="metadata"></video>
-    <video src="20260316010move.mp4#t=0.1" class="expandable" muted loading="lazy" preload="metadata"></video>
-    <video src="20260316011move.mp4#t=0.1" class="expandable" muted loading="lazy" preload="metadata"></video>
-    <video src="20260316012move.mp4#t=0.1" class="expandable" muted loading="lazy" preload="metadata"></video>
-    <video src="20260316013move.mp4#t=0.1" class="expandable" muted loading="lazy" preload="metadata"></video>
-    <video src="20260316014move.mp4#t=0.1" class="expandable" muted loading="lazy" preload="metadata"></video>
+        <img src="thumb_20260316001.jpg" data-full="20260316001.png" alt="作品1" class="expandable" loading="lazy">
+        <img src="thumb_20260316002.jpg" data-full="20260316002.png" alt="作品2" class="expandable" loading="lazy">
+        <img src="thumb_20260316003.jpg" data-full="20260316003.png" alt="作品3" class="expandable" loading="lazy">
+        <img src="thumb_20260316004.jpg" data-full="20260316004.png" alt="作品4" class="expandable" loading="lazy">
+        <img src="thumb_20260316005.jpg" data-full="20260316005.png" alt="作品5" class="expandable" loading="lazy">
+        <img src="thumb_20260316006.jpg" data-full="20260316006.png" alt="作品6" class="expandable" loading="lazy">
+        <img src="thumb_20260316007.jpg" data-full="20260316007.png" alt="作品7" class="expandable" loading="lazy">
+        <img src="thumb_20260316008.jpg" data-full="20260316008.png" alt="作品8" class="expandable" loading="lazy">
+        <img src="thumb_20260316009.jpg" data-full="20260316009.png" alt="作品9" class="expandable" loading="lazy">
+        <img src="thumb_20260316010.jpg" data-full="20260316010.png" alt="作品10" class="expandable" loading="lazy">
+        <img src="thumb_20260316011.jpg" data-full="20260316011.png" alt="作品11" class="expandable" loading="lazy">
+        <img src="thumb_20260316012.jpg" data-full="20260316012.png" alt="作品12" class="expandable" loading="lazy">
+        <img src="thumb_20260316013.jpg" data-full="20260316013.png" alt="作品13" class="expandable" loading="lazy">
+        <img src="thumb_20260316014.jpg" data-full="20260316014.png" alt="作品14" class="expandable" loading="lazy">
+        <img src="thumb_20260316015.jpg" data-full="20260316015.png" alt="作品15" class="expandable" loading="lazy">
+        <img src="thumb_20260316016.jpg" data-full="20260316016.png" alt="作品16" class="expandable" loading="lazy">
+        <img src="thumb_20260316017.jpg" data-full="20260316017.png" alt="作品17" class="expandable" loading="lazy">
+        <img src="thumb_20260316018.jpg" data-full="20260316018.png" alt="作品18" class="expandable" loading="lazy">
+        <img src="thumb_20260316019.jpg" data-full="20260316019.png" alt="作品19" class="expandable" loading="lazy">
+        <img src="thumb_20260316020.jpg" data-full="20260316020.png" alt="作品20" class="expandable" loading="lazy">
+        <img src="thumb_20260316021.jpg" data-full="20260316021.png" alt="作品21" class="expandable" loading="lazy">
+        <img src="thumb_20260316022.jpg" data-full="20260316022.png" alt="作品22" class="expandable" loading="lazy">
+        <img src="thumb_20260316023.jpg" data-full="20260316023.png" alt="作品23" class="expandable" loading="lazy">
+        <img src="thumb_20260316024.jpg" data-full="20260316024.png" alt="作品24" class="expandable" loading="lazy">
+        <img src="thumb_20260316025.jpg" data-full="20260316025.png" alt="作品25" class="expandable" loading="lazy">
+        <img src="thumb_20260316026.jpg" data-full="20260316026.png" alt="作品26" class="expandable" loading="lazy">
+        <img src="thumb_20260316027.jpg" data-full="20260316027.png" alt="作品27" class="expandable" loading="lazy">
+        <img src="thumb_20260316028.jpg" data-full="20260316028.png" alt="作品28" class="expandable" loading="lazy">
+        <img src="thumb_20260316029.jpg" data-full="20260316029.png" alt="作品29" class="expandable" loading="lazy">
+        <img src="thumb_20260316030.jpg" data-full="20260316030.png" alt="作品30" class="expandable" loading="lazy">
+        <img src="thumb_20260316031.jpg" data-full="20260316031.png" alt="作品31" class="expandable" loading="lazy">
+        <img src="thumb_20260316032.jpg" data-full="20260316032.png" alt="作品32" class="expandable" loading="lazy">
+        <img src="thumb_20260316033.jpg" data-full="20260316033.png" alt="作品33" class="expandable" loading="lazy">
+        <img src="thumb_20260316034.jpg" data-full="20260316034.png" alt="作品34" class="expandable" loading="lazy">
+        <img src="thumb_20260316035.jpg" data-full="20260316035.png" alt="作品35" class="expandable" loading="lazy">
+        <img src="thumb_20260316036.jpg" data-full="20260316036.png" alt="作品36" class="expandable" loading="lazy">
+        <img src="thumb_20260316037.jpg" data-full="20260316037.png" alt="作品37" class="expandable" loading="lazy">
+        <img src="thumb_20260316038.jpg" data-full="20260316038.png" alt="作品38" class="expandable" loading="lazy">
+        <!-- 動画セクション -->
+        <video src="20260316001move.mp4#t=0.1" class="expandable" muted loading="lazy" preload="metadata"></video>
+        <video src="20260316002move.mp4#t=0.1" class="expandable" muted loading="lazy" preload="metadata"></video>
+        <video src="20260316003move.mp4#t=0.1" class="expandable" muted loading="lazy" preload="metadata"></video>
+        <video src="20260316004move.mp4#t=0.1" class="expandable" muted loading="lazy" preload="metadata"></video>
+        <video src="20260316005move.mp4#t=0.1" class="expandable" muted loading="lazy" preload="metadata"></video>
+        <video src="20260316006move.mp4#t=0.1" class="expandable" muted loading="lazy" preload="metadata"></video>
+        <video src="20260316007move.mp4#t=0.1" class="expandable" muted loading="lazy" preload="metadata"></video>
+        <video src="20260316008move.mp4#t=0.1" class="expandable" muted loading="lazy" preload="metadata"></video>
+        <video src="20260316009move.mp4#t=0.1" class="expandable" muted loading="lazy" preload="metadata"></video>
+        <video src="20260316010move.mp4#t=0.1" class="expandable" muted loading="lazy" preload="metadata"></video>
+        <video src="20260316011move.mp4#t=0.1" class="expandable" muted loading="lazy" preload="metadata"></video>
+        <video src="20260316012move.mp4#t=0.1" class="expandable" muted loading="lazy" preload="metadata"></video>
+        <video src="20260316013move.mp4#t=0.1" class="expandable" muted loading="lazy" preload="metadata"></video>
+        <video src="20260316014move.mp4#t=0.1" class="expandable" muted loading="lazy" preload="metadata"></video>
     </div>
 </div>
 
@@ -198,24 +237,24 @@ if (input !== password) {
         const logContainer = document.getElementById("boot-log-container");
         bootScreen.style.display = "flex";
         const logs = [
-    "SYSTEM_BOOT INITIATED...",
-    "CPU: [████████] 100% ONLINE",
-    "MEMORY: 8192MB ... OK",
-    "DISPLAY_UNIT: ACTIVE",
-    "----------------------------------------",
-    "AUTHENTICATING...",
-    "DECRYPTING ACCESS LEVEL...",
-    "ACCESS GRANTED",
-    `UNIT_ID: ${userID.toUpperCase()}`,
-    "----------------------------------------",
-    "AI_LAB PROTOCOL: ENGAGED",
-    "ANDROID_OS v4I.21 LOADED",
-    "...GLORY TO MANKIND.",
-    "----------------------------------------",
-    "LOADING GALLERY DATA...",
-    "SYNC COMPLETE.",
-    ">>> READY."
-];
+            "SYSTEM_BOOT INITIATED...",
+            "CPU: [████████] 100% ONLINE",
+            "MEMORY: 8192MB ... OK",
+            "DISPLAY_UNIT: ACTIVE",
+            "----------------------------------------",
+            "AUTHENTICATING...",
+            "DECRYPTING ACCESS LEVEL...",
+            "ACCESS GRANTED",
+            `UNIT_ID: ${userID.toUpperCase()}`,
+            "----------------------------------------",
+            "AILAB PROTOCOL: ENGAGED",
+            "LAB_OS v4I.2B LOADED",
+            "...GLORY TO MANKIND.",
+            "----------------------------------------",
+            "LOADING GALLERY DATA...",
+            "SYNC COMPLETE.",
+            ">>> READY."
+        ];
         let i = 0;
         const interval = setInterval(() => {
             if (i < logs.length) {
@@ -224,15 +263,33 @@ if (input !== password) {
                 logContainer.appendChild(div); i++;
             } else {
                 clearInterval(interval);
-                setTimeout(() => { bootScreen.style.opacity = "0"; setTimeout(() => bootScreen.style.display = "none", 800); }, 1000);
+                setTimeout(() => {
+                    bootScreen.style.opacity = "0";
+                    setTimeout(() => {
+                        bootScreen.style.display = "none";
+                        switchTab('image'); // ブート完了後に画像タブを適用
+                    }, 800);
+                }, 1000);
             }
         }, 300);
     });
 
+    // --- タブ切り替え ---
+    function switchTab(type) {
+        const items = Array.from(document.querySelectorAll(".expandable"));
+        items.forEach(el => {
+            const isVideo = el.tagName === "VIDEO";
+            el.style.display = (type === 'image' && !isVideo) || (type === 'video' && isVideo) ? '' : 'none';
+        });
+        document.querySelectorAll('.tab-btn').forEach((btn, i) => {
+            btn.classList.toggle('active', (type === 'image' && i === 0) || (type === 'video' && i === 1));
+        });
+    }
+
     // --- モーダル・ギャラリー制御 ---
     const modal = document.getElementById("modal");
     const modalWrapper = document.getElementById("modal-content-wrapper");
-    const galleryItems = () => Array.from(document.querySelectorAll(".expandable"));
+    const galleryItems = () => Array.from(document.querySelectorAll(".expandable")).filter(el => el.style.display !== 'none');
     let currentIndex = 0;
 
     const updateModalContent = () => {
